@@ -49,25 +49,33 @@
 
 
 text_file_path = 'C:\\Users\\Owner\\Documents\\CODE\\p1\\change_box.txt'
-new_text_content = ''
-target_word = '”'
-target_word2 = '“'
+
+target_word = ['”','“']
 new_word = '"'
-with open(text_file_path,'r',encoding='UTF8') as f:
-    lines = f.readlines() ## 기존 텍스트파일에 대한 내용을 모두 읽는다.
-    for i, l in enumerate(lines):
 
-        new_string = l.strip().replace(target_word,new_word).replace(target_word2,new_word)
-        if new_string:
-            new_text_content += new_string + '\n'
-        # else:
-        #     new_text_content += '\n'
-                
-with open(text_file_path,'w',encoding='UTF8') as f:
-    print(f"(Before):\n\n{new_text_content}\n")
-    f.write(new_text_content)
 
-    
-print("-------------------최종결과--------------------")
-with open(text_file_path,'r',encoding='UTF8') as f:
-    print(f.read())
+#target_word는 리스트로 해서 안에 문자열 목록들을 저장. new word 로 모두 변환하는 def new1_chtxt..   입력은 : 1. 파일명=change_box.txt 를 기본 2. targetword를 기본? 3. newword는 필수입력
+def new1_chtxt(target_word, new_word,text_file_path='C:\\Users\\Owner\\Documents\\CODE\\p1\\py_change\\change_box.txt'):
+    new_text_content = ''
+    new_path='C:\\Users\\Owner\\Documents\\CODE\p1\\py_change\\new_box.txt'
+    with open(text_file_path,'r',encoding='UTF8') as f:
+        lines = f.readlines() ## 기존 텍스트파일에 대한 내용을 모두 읽는다.
+        for l in (lines):
+            new_string=l
+            for i in target_word:
+                new_string = new_string.replace(i,new_word)
+            if new_string:
+                new_text_content += new_string 
+            # else:
+            #     new_text_content += '\n'
+    with open (text_file_path,'r',encoding='UTF8') as f:
+        print('\n__________before____________\n')
+        print(f.read())
+    with open(new_path,'w+',encoding='UTF8') as f:
+        f.write(new_text_content)
+
+        
+    print("-------------------최종결과--------------------")
+    with open(new_path,'r',encoding='UTF8') as f:
+        print(f.read())
+new1_chtxt(target_word, new_word)
