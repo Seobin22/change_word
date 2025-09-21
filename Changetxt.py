@@ -50,12 +50,15 @@
 
 text_file_path = 'C:\\Users\\Owner\\Documents\\CODE\\p1\\change_box.txt'
 
-target_word = ['”','“']
-new_word = '"'
+target_word = ['\\']
+new_word = '\\\\'
 
 
 #target_word는 리스트로 해서 안에 문자열 목록들을 저장. new word 로 모두 변환하는 def new1_chtxt..   입력은 : 1. 파일명=change_box.txt 를 기본 2. targetword를 기본? 3. newword는 필수입력
-def new1_chtxt(target_word, new_word,text_file_path='C:\\Users\\Owner\\Documents\\CODE\\p1\\py_change\\change_box.txt'):
+def new1_chtxt(target_word, new_word,content='',text_file_path='C:\\Users\\Owner\\Documents\\CODE\\p1\\py_change\\change_box.txt'):
+    if content!='':
+       with open (text_file_path,'w',encoding='UTF8') as f:
+         f.write(content)
     new_text_content = ''
     new_path='C:\\Users\\Owner\\Documents\\CODE\p1\\py_change\\new_box.txt'
     with open(text_file_path,'r',encoding='UTF8') as f:
@@ -78,4 +81,5 @@ def new1_chtxt(target_word, new_word,text_file_path='C:\\Users\\Owner\\Documents
     print("-------------------최종결과--------------------")
     with open(new_path,'r',encoding='UTF8') as f:
         print(f.read())
-new1_chtxt(target_word, new_word)
+content=r"C:\Users\Owner\Desktop\graph_save"
+new1_chtxt(target_word, new_word,content)
